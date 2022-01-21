@@ -1,0 +1,158 @@
+<%- include('partials/_header') %>
+
+   
+    <br><br>
+    <div class="container">
+        <br>
+        <!-- Modal -->
+        <div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-center">Registrar Tramites</h3>
+                        <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/add" method="post" autocomplete="off">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="detalle" placeholder="Ingrese detalle del tramite" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <input class="form-control" name="estudiante" cols="80" placeholder="Ingrese nombres y apellidos del estudiante" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="date" name="fecha" placeholder="Ingrese Fecha del tramite" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="departamento" placeholder="Ingrese el departamento" required>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-select" aria-label="Tipo de tramite" name="NivelUrgencia">
+                                    <option selected>Nivel de urgencia</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-select" aria-label="Tipo de tramite" name="tipoTramite">
+                                    <option selected>Tipo de tramite</option>
+                                    <option value="Estudiantil">Estudiantil</option>
+                                    <option value="Docente">Docente</option>
+                                    <option value="Juridico">Juridico</option>
+                                  </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" type="date" name="FechaRetiro" placeholder="Fecha en la que se proceso el tramite" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="time" name="hora" placeholder="Fecha en retirar el documento" required>
+                            </div>
+                            <button class="btn btn-primary btn-block" type="submit">
+                                Guardar
+                            </button>
+                            <a href="/" class="btn btn-danger btn-block">
+                                Cancelar
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <p class="text-center">Renderizacion SSR</p>
+        <br>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Nuevo">
+            Nuevo
+          </button>
+        <br>
+        <br>
+        <!-- LISTA -->
+        <div class="col-md-16">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Detalle</th>
+                        <th>Estudiante</th>
+                        <th>Fecha tramite</th>
+                        <th>Departamento</th>
+                        <th>Nivel Urgencia</th>
+                        <th>Tipo Tramite</th>
+                        <th>Fecha en que se proceso</th>
+                        <th>Hora retiro documento</th>
+                        <th>Estado</th>
+                        <th>Eliminar</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < tramites.length; i++) { %>
+                        <tr>
+                            <td>
+                                <%= i + 1%>
+                            </td>
+                            <td>
+                                <%= tramites[i].detalle %>
+                            </td>
+                            <td>
+                                <%= tramites[i].estudiante %>
+                            </td>
+                            <td>
+                                <%= tramites[i].fecha %>
+                            </td>
+                            <td>
+                                <%= tramites[i].departamento %>
+                            </td>
+                            <td>
+                                <%= tramites[i].NivelUrgencia %>
+                            </td>
+                            <td>
+                                <%= tramites[i].tipoTramite %>
+                            </td>
+                            <td>
+                                <%= tramites[i].FechaRetiro %>
+                            </td>
+                            <td>
+                                <%= tramites[i].hora %>
+                            </td>
+                            <td>
+                                <a class="<%= tramites[i].estado ? 'btn btn-success' : 'btn btn-info'%>" href="/turn/<%= tramites[i]._id %>">Salvar</a>
+                            </td>
+                            <td>
+                                <a href="/delete/<%= tramites[i]._id %>" class="btn btn-danger btn-block">
+                  Eliminar
+                </a>
+
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/edit/<%= tramites[i]._id %>" class="btn btn-dark btn-block">
+                  Editar
+                </a>
+
+
+                                </a>
+                            </td>
+
+                        </tr>
+
+                        <% } %>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <br><br><br><br>
+    <footer>
+        <p class="text-center"> Todos los derechos reservados 2022. Diseñado por: Mendoza Macias Danny Javier </p>
+    </footer>
+
+
+    <%- include('partials/_footer') %>

@@ -1,0 +1,63 @@
+<%- include('partials/_header') %>
+
+    <div class="container">
+        <div class="row">
+            <!--FORMULARIO PARA EDITAR DATOS-->
+            <div class="col-md-5 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/edit/<%= tramites._id %>" method="post" autocomplete="Off">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="detalle" placeholder="Ingrese detalle del tramite" value="<%= tramites.detalle %>">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="estudiante" placeholder="Ingrese nombres y apellidos del estudiante" value="<%= tramites.estudiante %>">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="date" name="fecha" placeholder="Ingrese la fecha del tramite" value="<%= tramites.fecha %>">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="departamento" placeholder="Ingrese el departamento" value="<%= tramites.departamento %>">
+                            </div>
+                            <div class="form-group">
+                                <select class="form-select" aria-label="Tipo de tramite" name="NivelUrgencia" value="<%= tramites.NivelUrgencia %>">
+                                    <option selected>Nivel de urgencia</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-select" aria-label="Tipo de tramite" name="tipoTramite" value="<%= tramites.tipoTramite %>">
+                                    <option selected>Tipo de tramite</option>
+                                    <option value="Estudiantil">Estudiantil</option>
+                                    <option value="Docente">Docente</option>
+                                    <option value="Juridico">Juridico</option>
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="date" name="FechaRetiro" placeholder="Ingrese la fecha del tramite" value="<%= tramites.FechaRetiro %>">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="time" name="hora" placeholder="Hora retiro" value="<%= tramites.hora %>">
+                            </div>
+
+                            <button class="btn btn-primary btn-block" type="submit">
+              Actualizar 
+            </button>
+
+                            <a href="/" class="btn btn-danger btn-block">
+                Cancelar
+              </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br>
+    <footer>
+        <p class="text-center"> Todos los derechos reservados 2022. Diseñado por: Mendoza Macias Danny Javier </p>
+    </footer>
+
+    <%- include('partials/_footer') %>
